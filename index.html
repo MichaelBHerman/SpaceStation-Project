@@ -27,8 +27,8 @@
     
     <p>Latitude: <span id='latitude'></span><br></p>
     <p>Longitude: <span id='longitude'></span><br></p>
-    <p>Altitude: <span id='altitude'></span><br></p>
-    <p>Velocity: <span id='velocity'></span><br></p>
+    <p>Altitude: <span id='altitude'></span> km<br></p>
+    <p>Velocity: <span id='velocity'></span> km/hr<br></p>
     
     <script>
        let mymap = L.map('map').setView([0, 0], 2);
@@ -47,23 +47,27 @@
 
       let marker = L.marker([0, 0], { icon: issIcon }).addTo(mymap);
 
-       async function getData() {
+    //   let firstTime = True;
+
+      async function getData() {
         let response = await fetch('https://api.wheretheiss.at/v1/satellites/25544')
         let data = await response.json(); //converts data into json//
         let { latitude, longitude, altitude, velocity } = data; //destructure the json and pull out the info i want//
 
-        // L.marker([latitude, longitude]).addTo(mymap);
+       
         marker.setLatLng([latitude, longitude]);
-
-        document.getElementById('latitude').textContent = latitude;
-        document.getElementById('longitude').textContent = longitude;
-        document.getElementById('altitude').textContent = altitude;
-        document.getElementById('velocity').textContent = velocity;
+        
+        mymap.setView([latitude, longitude], 4);
+        
+        document.getElementById('latitude').textContent = latitude.toFixed(5);
+        document.getElementById('longitude').textContent = longitude.toFixed(5);
+        document.getElementById('altitude').textContent = altitude.toFixed(2);
+        document.getElementById('velocity').textContent = velocity.toFixed(0);
        
 
        }
 
-    //    getData();
+       getData();
        setInterval(getData, 1000);
     </script>
 </body>
