@@ -3,10 +3,10 @@
 }
 
 #map {
-    height: 600px;
-    width: 600px;
+    height: 400px;
+    width: 400px;
     border-radius: 100%;   
-}
+   }
 
 #background-video {
     width: 100vw;
