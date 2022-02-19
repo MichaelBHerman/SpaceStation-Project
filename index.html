@@ -31,7 +31,7 @@
     <p>Velocity: <span id='velocity'></span> km/hr<br></p>
     
     <script>
-       let mymap = L.map('map').setView([0, 0], 2);
+       let mymap = L.map('map').setView([0, 0], 2); //latitude, longitude, zoomlevel //
    
 
        let attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
@@ -56,7 +56,7 @@
        
         marker.setLatLng([latitude, longitude]);
         
-        mymap.setView([latitude, longitude], 4);
+        mymap.setView([latitude, longitude], 3);
         
         document.getElementById('latitude').textContent = latitude.toFixed(5);
         document.getElementById('longitude').textContent = longitude.toFixed(5);
